@@ -7,6 +7,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
@@ -19,11 +22,13 @@ public class tess3 {
 
 	public static void main(String[] args) throws TesseractException, IOException {
 		
-		String path   = "C:\\Users\\USER\\Desktop\\downloads\\";			//목표 이미지 저장소
-		String tdpath = path + "tessdata";									//lang.traindata 저장소
-		String lang   = "kor";												//인식 언어
-		String flnm   = lang+".굴림.exp0";									//파일명
-		String rslt   = "";													//ocr 추출 결과값
+		final Logger log = LogManager.getLogger(tess3.class);
+		
+		String path   = "C:\\Users\\USER\\Desktop\\downloads\\",			//목표 이미지 저장소
+			   tdpath = path + "tessdata",									//lang.traindata 저장소
+			   lang   = "kor",												//인식 언어
+			   flnm   = lang+".굴림.exp0",									//파일명
+			   rslt   = "";													//ocr 추출 결과값
 		
 		File dir;
 		File[] mkdir;
@@ -35,12 +40,11 @@ public class tess3 {
 				mkdir = dir.listFiles();
 				if(mkdir.length == 0) {
 					break;
-				} else {
 				}
 			} else {
 				try {
 					dir.mkdir();
-					System.out.println("\"" + dir.getName() + "\" 폴더 생성");
+					log.info("Make Directory \'" + dir.getName() + "\'folder");
 				} catch(Exception e) {
 					e.getStackTrace();
 				}
@@ -49,26 +53,25 @@ public class tess3 {
 			n++;
 		}
 		
-		System.out.println(dir.getAbsolutePath() + "에서 작업 시작");
+		log.info("Job Path => " + dir.getAbsolutePath());
 		
-		File imgFile = new File(path + flnm + ".jpg");
+		File imgFile 	  = new File(path + flnm + ".jpg");
 		BufferedImage img = ImageIO.read(imgFile);					//log4j2로 이미지 못읽을 시 에러 검출 하도록 만들기
-		Tesseract inst = new Tesseract();
+		Tesseract inst 	  = new Tesseract();
 		
 		//이미지 grayscale 작업
-		for(int y = 0; y < img.getHeight(); y++) {
-			for(int x = 0; x < img.getWidth(); x++) {
+		for(int y=0;y<img.getHeight();y++) {
+			for(int x=0;x<img.getWidth();x++) {
 				Color clr = new Color(img.getRGB(x, y));
 				int   rgb = (int) (0.2126 * clr.getRed() 
-					      + 0.7152 * clr.getGreen() 
-					      + 0.0722 * clr.getBlue());
-				
+					      		 + 0.7152 * clr.getGreen() 
+					      		 + 0.0722 * clr.getBlue());
 				img.setRGB(x, y, new Color(rgb, rgb, rgb).getRGB());
 			}
 		}
 		
 		//grayscale한 이미지 저장 경로설정 및 불러오기
-		path = dir.getAbsolutePath() + "\\";
+		path 	 = dir.getAbsolutePath() + "\\";
 		ImageIO.write(img, "tif", new File(path + flnm + ".tif"));
 		imgFile  = new File(path + flnm + ".tif");
 		img 	 = ImageIO.read(imgFile);
@@ -89,7 +92,7 @@ public class tess3 {
 		inst.setPageSegMode(6);
 		rslt = inst.doOCR(img);
 		
-		System.out.println("result: " + rslt);
+		log.info("result: " + rslt);
 		
 	}
 	

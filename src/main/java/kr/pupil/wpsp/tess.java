@@ -6,12 +6,18 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
 public class tess {
 	// TODO tess4j를 이용한 OCR프로그램
 	public static void main(String[] args) throws TesseractException, IOException {
+		
+		final Logger log = LogManager.getLogger(tess.class);
+		
 		File imgFile = new File("C:\\Users\\USER\\Desktop\\downloads\\New_sample\\4_train\\kor.맑은고딕.exp6.tiff");
 		BufferedImage img = ImageIO.read(imgFile);
 		Tesseract inst = new Tesseract();
@@ -24,7 +30,7 @@ public class tess {
 		//inst.setVariable(result, result);
 		result = inst.doOCR(img);
 		
-		System.out.println("result: " + result);
+		log.info("result: " + result);
 	}
 
 }

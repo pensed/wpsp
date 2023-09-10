@@ -7,13 +7,18 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
 public class tess2 {
 	// TODO 이미지내 grayscale을 이용하여 이미지를 편집 후 추출하는 텍스트의 좌표가 있는 box파일을 생성, tess4j로 ocr진행
 	public static void main(String[] args) throws TesseractException, IOException {
-
+		
+		final Logger log = LogManager.getLogger(tess2.class);
+		
 		String path   = "C:\\Users\\USER\\Desktop\\downloads\\";			//목표 이미지 저장소
 		String tdpath = "C:\\Users\\USER\\Desktop\\downloads\\tessdata";	//lang.traindata 저장소
 		String lang   = "kor";												//인식 언어
@@ -57,7 +62,7 @@ public class tess2 {
 		inst.setPageSegMode(6);
 		rslt = inst.doOCR(img);
 		
-		System.out.println("result: " + rslt);
+		log.info("result: " + rslt);
 	}
 
 }

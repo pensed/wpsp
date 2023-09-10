@@ -17,6 +17,27 @@
   <!-- 폐쇄망으로 maven다운로드 안될 시 webapp/WEB-INF/lib안에 라이브러리 파일을 빌드할 것! -->
   <dependencies>
     
+    <!-- log4j2 -->
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+	<dependency>
+    	<groupId>org.apache.logging.log4j</groupId>
+    	<artifactId>log4j-core</artifactId>
+    	<version>2.20.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+	<dependency>
+    	<groupId>org.apache.logging.log4j</groupId>
+    	<artifactId>log4j-api</artifactId>
+    	<version>2.20.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+	<dependency>
+    	<groupId>org.apache.logging.log4j</groupId>
+    	<artifactId>log4j-slf4j-impl</artifactId>
+    	<version>2.20.0</version>
+    	<scope>test</scope>
+	</dependency>
+
     <!-- junit -->
     <!-- https://mvnrepository.com/artifact/junit/junit -->
     <dependency>
