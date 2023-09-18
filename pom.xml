@@ -1,19 +1,31 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns		  = "http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi		  = "http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation= "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>kr.pupil</groupId>
+  <groupId>wpsp</groupId>
   <artifactId>wpsp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
-
-  <name>wpsp</name>
-  <url>http://maven.apache.org</url>
-
+  <packaging>war</packaging>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>17</release>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
+      </plugin>
+    </plugins>
+  </build>
+    
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-
+  
   <!-- 폐쇄망으로 maven다운로드 안될 시 webapp/WEB-INF/lib안에 라이브러리 파일을 빌드할 것! -->
   <dependencies>
     
@@ -86,6 +98,30 @@
     	<artifactId>javacv</artifactId>
     	<version>1.5.9</version>
 	</dependency>
+	
+	<!-- javax servlet -->
+	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+	<dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>javax.servlet-api</artifactId>
+    	<version>4.0.1</version>
+    	<scope>provided</scope>
+	</dependency>
+	
+	<!-- for multiple file upload -->
+	<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+	<dependency>
+    	<groupId>commons-fileupload</groupId>
+    	<artifactId>commons-fileupload</artifactId>
+    	<version>1.5</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+	<dependency>
+    	<groupId>commons-io</groupId>
+    	<artifactId>commons-io</artifactId>
+    	<version>2.11.0</version>
+	</dependency>
+
 
 	
   </dependencies>
