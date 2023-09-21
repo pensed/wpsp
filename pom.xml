@@ -122,7 +122,46 @@
     	<version>2.11.0</version>
 	</dependency>
 
-
+	<!-- sitemesh 일관된 룩앤필(Look and Feel), 내비게이션, 
+		 레이아웃 스키마가 필요하는 많은 페이지로 구성된 사이트를 
+		 만드는 것을 지원해 주는 프레임워크(웹 페이지의 레이아웃과 
+		 데코레이션 프레임워크, 웹 애플리케이션 통합 프레임워크)-->
+	<!-- https://mvnrepository.com/artifact/org.sitemesh/sitemesh -->
 	
+	<dependency>
+	    <groupId>org.sitemesh</groupId>
+	    <artifactId>sitemesh</artifactId>
+	    <version>3.0.1</version>
+	</dependency>
+	<!-- 특정 URL에 대한 요청을 다른 곳으로 redirect 또는 forward 할 수 있게 해주는 필터 -->
+	<!-- https://mvnrepository.com/artifact/org.tuckey/urlrewritefilter -->
+	<dependency>
+    	<groupId>org.tuckey</groupId>
+    	<artifactId>urlrewritefilter</artifactId>
+    	<version>4.0.4</version>
+	</dependency>
+	
+	<!-- import org.apache.commons.lang.StringEscapeUtils;를 쓰기 위해서 -->
+	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+	<dependency>
+    	<groupId>org.apache.commons</groupId>
+    	<artifactId>commons-lang3</artifactId>
+    	<version>3.13.0</version>
+	</dependency>
+	<!-- lang에서 DEPRECATED되었다 이제 text에서 제공한다고 한다. -->
+	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+	<dependency>
+    	<groupId>org.apache.commons</groupId>
+    	<artifactId>commons-text</artifactId>
+    	<version>1.10.0</version>
+	</dependency>
+	<!-- google guava -->
+	<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+	<dependency>
+    	<groupId>com.google.guava</groupId>
+    	<artifactId>guava</artifactId>
+    	<version>32.1.2-jre</version>
+	</dependency>
+
   </dependencies>
 </project>

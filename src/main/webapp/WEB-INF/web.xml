@@ -9,7 +9,109 @@
     <welcome-file>/view/main.html</welcome-file>
   </welcome-file-list>
   
-  <!-- servlet -->
+  
+  <!-- context -->
+  <context-param>
+  	<param-name>sitemesh.configfile</param-name>
+  	<param-value>WEB-INF/config/sitemesh/sitemesh3.xml</param-value>
+  </context-param>
+  
+  
+  <!-- 필터들 -->
+  <!-- init-param의 encoding 속성을 통한 encoding 설정 -->
+  <filter>
+  	<filter-name>characterEncodingFilter</filter-name>
+  	<filter-class>org.pupilla.wpsp.filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>forceEncoding</param-name>
+  		<param-value>true</param-value>
+  	</init-param>
+  </filter>
+  <!-- XSS 스크립팅 방지 -->
+  <filter>
+  	<filter-name>XSS</filter-name>
+  	<filter-class>org.pupilla.wpsp.filter.CrossScriptingFilter</filter-class>
+  </filter>
+  <!-- 세션관리
+  <filter>
+  	<filter-name>JSession</filter-name>
+  	<filter-class>org.pupilla.wpsp.filter.JSessionFilter</filter-class>
+  </filter> -->
+  <!-- 브라우저 내에서 활성화 시키는 필터 -->
+  <filter>
+  	<filter-name>HeaderSecurity</filter-name>
+  	<filter-class>org.pupilla.wpsp.filter.HeaderSercurityFilter</filter-class>
+  </filter>
+  <!-- url 변경 필터 -->
+  <filter>
+  	<filter-name>UrlRewriteFilter</filter-name>
+  	<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+  </filter>
+  <filter>
+    <filter-name>sitemesh</filter-name>
+    <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+  </filter>
+  <!-- 모바일인지 pc인지
+  <filter>
+    <description>Mobile View Check</description>
+    <filter-name>mobileCheck</filter-name>
+    <filter-class>kr.ujin.web.filter.MobileViewCheckFilter</filter-class>
+    <init-param>
+        <param-name>cookieName</param-name>
+        <param-value>viewpcmode</param-value>
+    </init-param>
+    <init-param>
+        <param-name>redirectUrl</param-name>
+        <param-value>http://m.itfind.or.kr</param-value>
+    </init-param>
+  </filter>   -->
+  
+  
+  <!--  필터매핑 -->
+  <filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>XSS</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>  
+  <!--
+  <filter-mapping>
+    <filter-name>JSession</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>  
+  -->
+  <filter-mapping>
+    <filter-name>HeaderSecurity</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>  
+  <filter-mapping>
+      <filter-name>UrlRewriteFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>sitemesh</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+  </filter-mapping>
+  <!-- 
+  <filter-mapping>
+      <filter-name>mobileCheck</filter-name>
+      <url-pattern>/main.do</url-pattern>
+      <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  -->
+
+  
+  <!-- 서블릿 -->
   <servlet>
 		<servlet-name>crim</servlet-name>
 		<servlet-class>org.pupilla.wpsp.crim.servlet.CrimServlet</servlet-class>
@@ -24,7 +126,7 @@
 	</servlet>
 
 	
-  <!-- servlet mapping -->
+  <!-- 서블릿 매핑 -->
   <servlet-mapping>
 		<servlet-name>crim</servlet-name>
 		<url-pattern>/view/crim</url-pattern>

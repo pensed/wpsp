@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file ="/../sidebar/header.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="/css/main.css">
-		<title>main</title>
+		<link rel="stylesheet" type="text/css" href="/css/header.css">
+		<title></title>
 	</head>
 	<body>
-		main
+		footer
 	</body>
 </html>
